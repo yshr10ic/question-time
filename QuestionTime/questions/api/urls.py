@@ -7,5 +7,11 @@ router = DefaultRouter()
 router.register(r'questions', qv.QuestionViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('questions/<slug:slug>/answers/',
+         qv.QuestionAnswerListAPIView.as_view(),
+         name='answer-list'),
+    path('questions/<slug:slug>/answer/',
+         qv.AnswerCreateAPIView.as_view(),
+         name='create-answer')
 ]
